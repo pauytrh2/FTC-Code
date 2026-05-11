@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 @TeleOp
 public class FieldCentric extends LinearOpMode {
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode() {
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("left_front");
         DcMotor backLeftMotor = hardwareMap.dcMotor.get("left_back");
         DcMotor frontRightMotor = hardwareMap.dcMotor.get("right_front");
