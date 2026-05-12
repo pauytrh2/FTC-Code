@@ -13,7 +13,7 @@ A_Main.java // this file is for an automatic OpMode
 M_Leg.java // this file is for a manual OpMode 
 ```
 ### Other
-Every ```public class``` that ```extends LinearOpMode``` (an ```OpMode```) should be annotated with
+Every `public class` that `extends LinearOpMode` (an `OpMode`) should be annotated with
 ```java
 @Autonomous(name="A_Something", group="Linear OpMode") // if it's autonomous, or
 @TeleOp(name="M_Something", group="Linear OpMode") // if it's manual
