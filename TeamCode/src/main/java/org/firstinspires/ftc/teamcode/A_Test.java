@@ -45,13 +45,13 @@ public class A_Test extends LinearOpMode {
                     break;
                 }
 
-                double tspeed = (error / 180) * 2;
+                double target_speed = (error / 180) * 2;
 
-                frontLeftMotor.setPower(tspeed);
-                backLeftMotor.setPower(tspeed);
+                frontLeftMotor.setPower(target_speed);
+                backLeftMotor.setPower(target_speed);
 
-                frontRightMotor.setPower(-tspeed);
-                backRightMotor.setPower(-tspeed);
+                frontRightMotor.setPower(-target_speed);
+                backRightMotor.setPower(-target_speed);
 
                 telemetry.addData("Target", targetAngle);
                 telemetry.addData("Current", currentAngle);
