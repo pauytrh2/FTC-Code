@@ -30,7 +30,8 @@ public class M_Controller extends LinearOpMode {
 
         if (isStopRequested()) return;
 
-        double last_angle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+//        double last_angle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+
         while (opModeIsActive()) {
             double y = -gamepad1.left_stick_y;
             double x = gamepad1.left_stick_x;
@@ -40,12 +41,13 @@ public class M_Controller extends LinearOpMode {
                 imu.resetYaw();
             }
 
-            if (gamepad1.optionsWasPressed()) {
-                last_angle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
-            } else if (gamepad1.optionsWasReleased()) {
-                double cornet_angle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
-                double offset = cornet_angle - last_angle;
-            }
+//            if (gamepad1.optionsWasPressed()) {
+//                last_angle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+//            } else if (gamepad1.optionsWasReleased()) {
+//                double cornet_angle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
+//                double offset = cornet_angle - last_angle;
+//            }
+
             double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
             double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
             double rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
