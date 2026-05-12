@@ -10,7 +10,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import java.util.concurrent.TimeUnit;
 
 @Autonomous(name="Auto_Basic", group="Linear OpMode")
-public class BasicAutonomous extends LinearOpMode {
+public class Auto_Basic extends LinearOpMode {
     @Override
     public void runOpMode() {
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("left_front");
