@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name="FourDirControl", group="Linear OpMode")
+@TeleOp(name="M_Old_Controller", group="Linear OpMode")
 public class M_Old_Controller extends LinearOpMode {
     @Override
     public void runOpMode() {

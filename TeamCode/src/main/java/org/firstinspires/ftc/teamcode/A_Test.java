@@ -9,7 +9,7 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import java.util.concurrent.TimeUnit;
 
-@Autonomous(name="Auto_Basic", group="Linear OpMode")
+@Autonomous(name="A_Test", group="Linear OpMode")
 public class A_Test extends LinearOpMode {
     @Override
     public void runOpMode() {
