@@ -9,7 +9,7 @@ import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 @TeleOp(name="FieldCentric", group="Linear OpMode")
-public class FieldCentric extends LinearOpMode {
+public class M_Controller extends LinearOpMode {
     @Override
     public void runOpMode() {
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("left_front");

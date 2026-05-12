@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name="FourDirControl", group="Linear OpMode")
-public class FourDirControl extends LinearOpMode {
+public class M_Old_Controller extends LinearOpMode {
     @Override
     public void runOpMode() {
         DcMotor frontLeftMotor = hardwareMap.dcMotor.get("left_front");
