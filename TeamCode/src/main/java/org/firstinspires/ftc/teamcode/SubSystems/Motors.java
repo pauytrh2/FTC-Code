@@ -7,9 +7,9 @@ import com.seattlesolvers.solverslib.command.SubsystemBase;
 
 public class Motors extends SubsystemBase {
      private static DcMotor[] getMotors(HardwareMap hw) {
-        DcMotor frontLeftMotor = hw.dcMotor.get("front_left");
-        DcMotor frontRightMotor = hw.dcMotor.get("right_front");
+        DcMotor frontLeftMotor = hw.dcMotor.get("left_front");
         DcMotor backLeftMotor = hw.dcMotor.get("left_back");
+        DcMotor frontRightMotor = hw.dcMotor.get("right_front");
         DcMotor backRightMotor = hw.dcMotor.get("right_back");
 
         return new DcMotor[]{frontLeftMotor, backLeftMotor, frontRightMotor, backRightMotor};
@@ -25,8 +25,8 @@ public class Motors extends SubsystemBase {
     public static DcMotor[] initMotors(HardwareMap hw) {
         DcMotor[] motors = getMotors(hw);
         DcMotor frontLeftMotor = motors[0];
-        DcMotor frontRightMotor = motors[1];
-        DcMotor backLeftMotor = motors[2];
+        DcMotor backLeftMotor = motors[1];
+        DcMotor frontRightMotor = motors[2];
         DcMotor backRightMotor = motors[3];
 
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
