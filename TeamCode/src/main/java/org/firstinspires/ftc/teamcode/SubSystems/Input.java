@@ -10,6 +10,11 @@ public class Input extends SubsystemBase {
         double x = gp.left_stick_x * 0.5;
         double rx = -gp.right_stick_x;
 
+        if (gp.left_trigger_pressed) {
+            x *= (1 - gp.left_trigger);
+            y *= (1 - gp.left_trigger);
+        }
+
         if (gp.options) {
             imu.resetYaw();
         }
