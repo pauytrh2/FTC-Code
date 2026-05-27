@@ -1,5 +1,5 @@
 # FTC Base Code
-> P.I.L.L's base code for an FTC robot
+> Prizmatics's base code for an FTC robot
 
 ## Good principles to follow
 Generally, this code follows the [KISS](https://en.wikipedia.org/wiki/KISS_principle) principle.
