@@ -14,22 +14,6 @@ Movement is field-centric.
 - Right stick : right → Spin Right
 
 
-### **`M_Old_Controller.java`**
-> `M_Controller.java` But robot-centric.
-
-It sucks and we will delete it.
-Some day.
-
-#### Inputs
-- Left stick : left → Move Left
-- Left stick : right → Move Right
-- Left stick : up → Move Forwards
-- Left stick : down → Move Backwards
-
-- Right stick : left → Spin Left
-- Right stick : right → Spin Right
-
-
 ### **`A_Test.java`**
 > Experimental automatic movement.
 
