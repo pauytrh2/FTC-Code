@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 public class Input extends SubsystemBase {
     public static double[] GetInput(Gamepad gp, IMU imu) {
-        double y = -gp.left_stick_y * 0.5;
-        double x = gp.left_stick_x * 0.5;
+        double y = gp.left_stick_y * 0.5;
+        double x = -gp.left_stick_x * 0.5;
         double rx = -gp.right_stick_x;
 
         if (gp.left_trigger_pressed) {
