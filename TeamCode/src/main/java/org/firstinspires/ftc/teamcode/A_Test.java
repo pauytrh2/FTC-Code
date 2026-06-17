@@ -3,29 +3,24 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.IMU;
-import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.SubSystems.IMUInit;
+import org.firstinspires.ftc.teamcode.SubSystems.Motors;
+
 import java.util.concurrent.TimeUnit;
 
 @Autonomous(name="A_Test", group="Linear OpMode")
 public class A_Test extends LinearOpMode {
     @Override
     public void runOpMode() {
-        DcMotor frontLeftMotor = hardwareMap.dcMotor.get("left_front");
-        DcMotor backLeftMotor = hardwareMap.dcMotor.get("left_back");
-        DcMotor frontRightMotor = hardwareMap.dcMotor.get("right_front");
-        DcMotor backRightMotor = hardwareMap.dcMotor.get("right_back");
+        DcMotor[] motors = Motors.initMotors(hardwareMap);
+        DcMotor frontLeftMotor = motors[0];
+        DcMotor backLeftMotor = motors[1];
+        DcMotor frontRightMotor = motors[2];
+        DcMotor backRightMotor = motors[3];
 
-        frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        IMU imu = hardwareMap.get(IMU.class, "imu");
-        IMU.Parameters parameters = new IMU.Parameters(new RevHubOrientationOnRobot(
-                RevHubOrientationOnRobot.LogoFacingDirection.UP,
-                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD));
-        imu.initialize(parameters);
+        IMU imu = IMUInit.GetIMU(hardwareMap);
 
         telemetry.addData("Status", "Initialized & Ready");
         telemetry.update();
@@ -33,52 +28,52 @@ public class A_Test extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
-            imu.resetYaw();
-            double targetAngle = 90;
+            for (int i = 0; i < 4; i = i + 1) {
+                imu.resetYaw();
 
-            while (opModeIsActive()) {
+                double targetAngle = 90;
                 double currentAngle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
-
                 double error = targetAngle - currentAngle;
 
-                if (Math.abs(error) < 2) {
-                    break;
+                while (!(Math.abs(error) < 2) && opModeIsActive()) {
+                    currentAngle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
+                    error = targetAngle - currentAngle;
+
+                    double target_speed = (error / 180) * 2;
+
+                    frontLeftMotor.setPower(target_speed);
+                    backLeftMotor.setPower(target_speed);
+
+                    frontRightMotor.setPower(-target_speed);
+                    backRightMotor.setPower(-target_speed);
+
+                    telemetry.addData("Target", targetAngle);
+                    telemetry.addData("Current", currentAngle);
+                    telemetry.addData("Error", error);
+                    telemetry.update();
                 }
 
-                double target_speed = (error / 180) * 2;
+                frontLeftMotor.setPower(0);
+                backLeftMotor.setPower(0);
+                frontRightMotor.setPower(0);
+                backRightMotor.setPower(0);
 
-                frontLeftMotor.setPower(target_speed);
-                backLeftMotor.setPower(target_speed);
+                frontLeftMotor.setPower(0.2);
+                backLeftMotor.setPower(0.2);
+                frontRightMotor.setPower(0.2);
+                backRightMotor.setPower(0.2);
 
-                frontRightMotor.setPower(-target_speed);
-                backRightMotor.setPower(-target_speed);
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
 
-                telemetry.addData("Target", targetAngle);
-                telemetry.addData("Current", currentAngle);
-                telemetry.addData("Error", error);
-                telemetry.update();
+                frontLeftMotor.setPower(0);
+                backLeftMotor.setPower(0);
+                frontRightMotor.setPower(0);
+                backRightMotor.setPower(0);
             }
-
-            frontLeftMotor.setPower(0);
-            backLeftMotor.setPower(0);
-            frontRightMotor.setPower(0);
-            backRightMotor.setPower(0);
-
-            frontLeftMotor.setPower(0.2);
-            backLeftMotor.setPower(0.2);
-            frontRightMotor.setPower(0.2);
-            backRightMotor.setPower(0.2);
-
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-
-            frontLeftMotor.setPower(0);
-            backLeftMotor.setPower(0);
-            frontRightMotor.setPower(0);
-            backRightMotor.setPower(0);
         }
     }
 }
