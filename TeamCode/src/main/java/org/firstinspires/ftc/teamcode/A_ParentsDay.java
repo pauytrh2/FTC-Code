@@ -29,9 +29,20 @@ public class A_ParentsDay extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
-            Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.5, 0));
+            Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.55, 0, telemetry));
             SleepMil(2000);
-            Motors.setPower(motors, new double[]{0, 0, 0, 0});
+
+            Motors.setPower(motors, CalcPower.GetPower(imu, -0.5, 0, 0, telemetry));
+            SleepMil(2000);
+
+            Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.6, 0, telemetry));
+            SleepMil(1000);
+
+            Motors.setPower(motors, CalcPower.GetPower(imu, 0.55, 0, 0, telemetry));
+            SleepMil(1500);
+
+            Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.5, 0, telemetry));
+            SleepMil(1000);
 
 //          Spin(imu, motors);
         }

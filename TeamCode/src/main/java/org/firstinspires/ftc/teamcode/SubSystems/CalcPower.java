@@ -3,15 +3,25 @@ package org.firstinspires.ftc.teamcode.SubSystems;
 import com.qualcomm.robotcore.hardware.IMU;
 import com.seattlesolvers.solverslib.command.SubsystemBase;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class CalcPower extends SubsystemBase {
-    public static double[] GetPower(IMU imu, double x, double y, double rx) {
+    public static double[] GetPower(IMU imu, double x, double y, double rx, Telemetry telemetry) {
         // This is robot-centric movement calculation
+
+        telemetry.addData("x", x);
+        telemetry.addData("y", y);
+        telemetry.addData("rx", rx);
 
         double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
         double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
         double rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
+
+        telemetry.addData("rotX", rotX);
+        telemetry.addData("rotY", rotY);
+        telemetry.addData("Heading", botHeading);
+        telemetry.update();
 
         rotX = rotX * 1.1;
 
