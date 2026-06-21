@@ -41,7 +41,7 @@ public class M_Controller extends LinearOpMode {
             double y = input[1];
             double rx = input[2];
 
-            double[] power = CalcPower.GetPower(imu, x, y, rx, telemetry);
+            double[] power = CalcPower.GetPower(imu, x, y, rx);
 
             Motors.setPower(motors, power);
         }

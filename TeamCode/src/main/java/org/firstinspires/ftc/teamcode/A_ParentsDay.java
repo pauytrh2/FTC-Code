@@ -4,7 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IMU;
-import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.SubSystems.CalcPower;
 import org.firstinspires.ftc.teamcode.SubSystems.IMUInit;
 import org.firstinspires.ftc.teamcode.SubSystems.Motors;
@@ -20,26 +19,21 @@ public class A_ParentsDay extends LinearOpMode {
         IMU imu = IMUInit.GetIMU(hardwareMap);
         imu.resetYaw();
 
-        telemetry.addData("Status", "Initialized & Ready");
-        telemetry.update();
-
         waitForStart();
 
         if (opModeIsActive()) {
-            Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.5, 0, telemetry));
-            SleepMil(2200);
+            Do(imu, motors, 2300, 0, 0.5, 0);
 
-            Motors.setPower(motors, CalcPower.GetPower(imu, -0.5, 0, 0, telemetry));
-            SleepMil(2200);
+            Motors.setPower(motors, CalcPower.GetPower(imu, -0.5, 0, 0));
+            SleepMil(2400);
 
-            Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.5, 0, telemetry));
+            Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.5, 0));
             SleepMil(1300);
 
-            Motors.setPower(motors, CalcPower.GetPower(imu, 0.55, 0, 0, telemetry));
+            Motors.setPower(motors, CalcPower.GetPower(imu, 0.55, 0, 0));
             SleepMil(1300);
 
-            Motors.setPower(motors, CalcPower.GetPower(imu, -0.2, 0.5, 0, telemetry));
-            SleepMil(1500);
+            Do(imu, motors, 1500, 0, 0.5, 0.5);
         }
     }
 
@@ -49,6 +43,13 @@ public class A_ParentsDay extends LinearOpMode {
             TimeUnit.MILLISECONDS.sleep(timeout);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
+        }
+    }
+
+    public static void Do(IMU imu, DcMotor[] motors, long time, double x, double y, double rx) {
+        long endTime = System.currentTimeMillis() + time;
+        while (System.currentTimeMillis() < endTime) {
+            Motors.setPower(motors, CalcPower.GetPower(imu, x, y, rx));
         }
     }
 
