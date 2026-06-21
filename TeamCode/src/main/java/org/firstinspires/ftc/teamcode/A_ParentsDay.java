@@ -16,12 +16,9 @@ public class A_ParentsDay extends LinearOpMode {
     @Override
     public void runOpMode() {
         DcMotor[] motors = Motors.initMotors(hardwareMap);
-        DcMotor frontLeftMotor = motors[0];
-        DcMotor backLeftMotor = motors[1];
-        DcMotor frontRightMotor = motors[2];
-        DcMotor backRightMotor = motors[3];
 
         IMU imu = IMUInit.GetIMU(hardwareMap);
+        imu.resetYaw();
 
         telemetry.addData("Status", "Initialized & Ready");
         telemetry.update();
@@ -29,32 +26,23 @@ public class A_ParentsDay extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
-            Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.55, 0, telemetry));
-            SleepMil(2000);
+            Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.5, 0, telemetry));
+            SleepMil(2200);
 
             Motors.setPower(motors, CalcPower.GetPower(imu, -0.5, 0, 0, telemetry));
-            SleepMil(2000);
-
-            Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.6, 0, telemetry));
-            SleepMil(1000);
-
-            Motors.setPower(motors, CalcPower.GetPower(imu, 0.55, 0, 0, telemetry));
-            SleepMil(1500);
+            SleepMil(2200);
 
             Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.5, 0, telemetry));
-            SleepMil(1000);
+            SleepMil(1300);
 
-//          Spin(imu, motors);
+            Motors.setPower(motors, CalcPower.GetPower(imu, 0.55, 0, 0, telemetry));
+            SleepMil(1300);
+
+            Motors.setPower(motors, CalcPower.GetPower(imu, -0.2, 0.5, 0, telemetry));
+            SleepMil(1500);
         }
     }
 
-    public static void Sleep(int timeout) {
-        try {
-            TimeUnit.SECONDS.sleep(timeout);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
-    }
 
     public static void SleepMil(long timeout) {
         try {
@@ -64,30 +52,30 @@ public class A_ParentsDay extends LinearOpMode {
         }
     }
 
-    public static void Spin(IMU imu, DcMotor[] motors) {
-        for (int i = 0; i < 4; i = i + 1) {
-            imu.resetYaw();
-
-            double targetAngle = 90;
-            double currentAngle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
-            double error = targetAngle - currentAngle;
-
-            while (!(Math.abs(error) < 2)) {
-                currentAngle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
-                error = targetAngle - currentAngle;
-
-                double target_speed = (error / 180) * 2;
-
-                Motors.setPower(motors, new double[]{target_speed, target_speed, -target_speed, -target_speed});
-            }
-
-            Motors.setPower(motors, new double[]{0, 0, 0, 0});
-
-            Motors.setPower(motors, new double[]{0.1, 0.1, 0.1, 0.1});
-
-            Sleep(1);
-
-            Motors.setPower(motors, new double[]{0, 0, 0, 0});
-        }
-    }
+//    public static void Spin(IMU imu, DcMotor[] motors) {
+//        for (int i = 0; i < 4; i = i + 1) {
+//            imu.resetYaw();
+//
+//            double targetAngle = 90;
+//            double currentAngle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
+//            double error = targetAngle - currentAngle;
+//
+//            while (!(Math.abs(error) < 2)) {
+//                currentAngle = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);
+//                error = targetAngle - currentAngle;
+//
+//                double target_speed = (error / 180) * 2;
+//
+//                Motors.setPower(motors, new double[]{target_speed, target_speed, -target_speed, -target_speed});
+//            }
+//
+//            Motors.setPower(motors, new double[]{0, 0, 0, 0});
+//
+//            Motors.setPower(motors, new double[]{0.1, 0.1, 0.1, 0.1});
+//
+//            SleepMi(1000);
+//
+//            Motors.setPower(motors, new double[]{0, 0, 0, 0});
+//        }
+//    }
 }
