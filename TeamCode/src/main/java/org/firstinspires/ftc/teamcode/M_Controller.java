@@ -17,8 +17,26 @@ public class M_Controller extends LinearOpMode {
 
         if (isStopRequested()) return;
 
+        boolean frozen = false;
+        boolean lastR1 = false;
+        double[] f_Input = new double[]{0, 0, 0};
+
         while (opModeIsActive()) {
-            double[] input = Input.GetInput(gamepad1, imu);
+            boolean currentR1State = gamepad1.right_bumper;
+
+            if (currentR1State && !lastR1) {
+                frozen = !frozen;
+            }
+            lastR1 = currentR1State;
+
+            double[] input;
+            if (frozen) {
+                input = f_Input;
+            } else {
+                input = Input.GetInput(gamepad1, imu);
+                f_Input = input;
+            }
+
             double x = input[0];
             double y = input[1];
             double rx = input[2];
