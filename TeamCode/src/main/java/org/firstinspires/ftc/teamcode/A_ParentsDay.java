@@ -22,16 +22,16 @@ public class A_ParentsDay extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
-            Do(imu, motors, 2300, 0, 0.5, 0);
+            Do(imu, motors, 2000, 0, 0.5, 0);
 
             Motors.setPower(motors, CalcPower.GetPower(imu, -0.5, 0, 0));
-            SleepMil(2400);
+            SleepMil(2100);
 
             Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.5, 0));
-            SleepMil(1300);
+            SleepMil(1250);
 
             Motors.setPower(motors, CalcPower.GetPower(imu, 0.55, 0, 0));
-            SleepMil(1300);
+            SleepMil(1200);
 
             Do(imu, motors, 1500, 0, 0.5, 0.5);
         }
