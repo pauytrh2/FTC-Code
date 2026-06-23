@@ -22,10 +22,10 @@ public class A_ParentsDay extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
-            Do(imu, motors, 2100, 0, 0.5, 0);
+            Do(imu, motors, 2150, 0, 0.5, 0);
 
             Motors.setPower(motors, CalcPower.GetPower(imu, -0.5, 0, 0));
-            SleepMil(2100);
+            SleepMil(2150);
 
             Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.5, 0));
             SleepMil(1250);
@@ -33,7 +33,9 @@ public class A_ParentsDay extends LinearOpMode {
             Motors.setPower(motors, CalcPower.GetPower(imu, 0.55, 0, 0));
             SleepMil(1200);
 
-            Do(imu, motors, 1500, 0, 0.5, 0.5);
+            Do(imu, motors, 1500, 0, 0.5, 0.2);
+
+            imu.resetYaw();
         }
     }
 
