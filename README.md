@@ -5,7 +5,7 @@
 Generally, this code follows the [KISS](https://en.wikipedia.org/wiki/KISS_principle) principle.
 
 ### Filenames
-Start every Java file's name with "M_" if it is manually controlled, and an "A_" if it is automatic.
+Start every Java file's name with "M_" if it is manually controlled, or an "A_" if it is automatic.
 
 For example:
 ```java
