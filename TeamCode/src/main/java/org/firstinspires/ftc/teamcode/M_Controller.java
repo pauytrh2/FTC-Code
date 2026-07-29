@@ -8,37 +8,43 @@ import org.firstinspires.ftc.teamcode.SubSystems.*;
 @TeleOp(name="M_Controller", group="Linear OpMode")
 public class M_Controller extends LinearOpMode {
     @Override
-    public void runOpMode() {
-        IMU imu = IMUInit.GetIMU(hardwareMap);
-        Motors.initMotors(hardwareMap);
-        Pinpoint.initPinpoint(hardwareMap);
+    public void runOpMode() { // this runs when run OpMode is pressed on the control hub
+        IMU imu = IMUInit.GetIMU(hardwareMap); // this tells the robot it's direction
+        Motors.initMotors(hardwareMap);        // these are the wheels' motors
+        Pinpoint.initPinpoint(hardwareMap);    // this tells the robot it's position
 
-        double x;
-        double y;
-        double rx;
+        // variables we will use later
+        double input_x;
+        double input_y;
+        double input_rx;
         double[] input;
         double[] power;
         double[] position;
 
-        waitForStart();
+        waitForStart(); // wait until start is pressed on the control hub
 
-        if (isStopRequested()) return;
+        if (isStopRequested()) return; // stop the OpMode if stop is pressed on the control hub
 
-        while (opModeIsActive()) {
-            Pinpoint.update();
-            position = Pinpoint.getPosition();
+        while (opModeIsActive()) { // while the OpMode is running
+            Pinpoint.update(); // get fresh data from odometry (position sensors)
+            position = Pinpoint.getPosition(); // store that data
+
+            // log all the data from the odometry
             telemetry.addData("X Position (cm)", position[0]);
             telemetry.addData("Y Position (cm)", position[1]);
             telemetry.addData("Rotation (deg)", position[2]);
+            telemetry.update();
 
-            input = Input.getInput(gamepad1, imu);
-            x = input[0];
-            y = input[1];
-            rx = input[2];
+            input = Input.getInput(gamepad1, imu); // get input from controller
 
-            power = CalcPower.GetPower(imu, x, y, rx);
+            // store that input in variables
+            input_x = input[0];
+            input_y = input[1];
+            input_rx = input[2];
 
-            Motors.setPower(power);
+            power = CalcPower.GetPower(imu, input_x, input_y, input_rx); // calculate how much power to give to each wheel's motor
+
+            Motors.setPower(power); // give the wheels' motors that amount of power
         }
     }
 }

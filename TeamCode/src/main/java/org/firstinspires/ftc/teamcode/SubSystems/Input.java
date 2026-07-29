@@ -6,20 +6,25 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 
 public class Input extends SubsystemBase {
     public static double[] getInput(Gamepad gp, IMU imu) {
-        double y = gp.left_stick_y * 0.5;
-        double x = -gp.left_stick_x * 0.5;
-        double rx = -gp.right_stick_x;
+        double y = gp.left_stick_y * 0.5;    // front and back
+        double x = -gp.left_stick_x * 0.5;   // left and right
+        double rx = -gp.right_stick_x * 0.5; // spin
 
+        // fast mode
         if (gp.right_trigger_pressed) {
-            y *= 1.5;
-            x *= 1.5;
+            y *= 2;
+            x *= 2;
+            rx *= 2;
         }
 
+        // slow mode
         if (gp.left_trigger_pressed) {
-            x *= (1 - gp.left_trigger);
-            y *= (1 - gp.left_trigger);
+            x *= 0.5;
+            y *= 0.5;
+            rx *= 0.5;
         }
 
+        // reset imu
         if (gp.options) {
             imu.resetYaw();
         }
