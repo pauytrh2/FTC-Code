@@ -5,7 +5,7 @@ import com.seattlesolvers.solverslib.command.SubsystemBase;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 public class Input extends SubsystemBase {
-    public static double[] GetInput(Gamepad gp, IMU imu) {
+    public static double[] getInput(Gamepad gp, IMU imu) {
         double y = gp.left_stick_y * 0.5;
         double x = -gp.left_stick_x * 0.5;
         double rx = -gp.right_stick_x;

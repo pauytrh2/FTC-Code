@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IMU;
 import org.firstinspires.ftc.teamcode.SubSystems.CalcPower;
 import org.firstinspires.ftc.teamcode.SubSystems.IMUInit;
@@ -14,26 +13,25 @@ import java.util.concurrent.TimeUnit;
 public class A_ParentsDay extends LinearOpMode {
     @Override
     public void runOpMode() {
-        DcMotor[] motors = Motors.initMotors(hardwareMap);
-
+        Motors.initMotors(hardwareMap);
         IMU imu = IMUInit.GetIMU(hardwareMap);
         imu.resetYaw();
 
         waitForStart();
 
         if (opModeIsActive()) {
-            Do(imu, motors, 2150, 0, 0.5, 0);
+            Do(imu, 2150, 0, 0.5, 0);
 
-            Motors.setPower(motors, CalcPower.GetPower(imu, -0.5, 0, 0));
+            Motors.setPower(CalcPower.GetPower(imu, -0.5, 0, 0));
             SleepMil(2150);
 
-            Motors.setPower(motors, CalcPower.GetPower(imu, 0, 0.5, 0));
+            Motors.setPower(CalcPower.GetPower(imu, 0, 0.5, 0));
             SleepMil(1250);
 
-            Motors.setPower(motors, CalcPower.GetPower(imu, 0.55, 0, 0));
+            Motors.setPower(CalcPower.GetPower(imu, 0.55, 0, 0));
             SleepMil(1200);
 
-            Do(imu, motors, 1500, 0, 0.5, 0.2);
+            Do(imu, 1500, 0, 0.5, 0.2);
 
             imu.resetYaw();
         }
@@ -48,10 +46,10 @@ public class A_ParentsDay extends LinearOpMode {
         }
     }
 
-    public static void Do(IMU imu, DcMotor[] motors, long time, double x, double y, double rx) {
+    public static void Do(IMU imu, long time, double x, double y, double rx) {
         long endTime = System.currentTimeMillis() + time;
         while (System.currentTimeMillis() < endTime) {
-            Motors.setPower(motors, CalcPower.GetPower(imu, x, y, rx));
+            Motors.setPower(CalcPower.GetPower(imu, x, y, rx));
         }
     }
 
