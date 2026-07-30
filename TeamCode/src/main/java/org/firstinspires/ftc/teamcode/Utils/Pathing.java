@@ -22,6 +22,8 @@ public class Pathing {
             current = roundList(Pinpoint.getPosition());
             move = new double[]{end[0] - current[0], end[1] - current[1]};
         }
+
+        Motors.setPower(new double[]{0, 0, 0, 0});
     }
 
     public static double[] roundList(double[] list) {

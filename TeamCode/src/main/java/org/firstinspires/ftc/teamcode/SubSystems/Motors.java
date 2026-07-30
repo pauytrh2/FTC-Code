@@ -17,8 +17,8 @@ public class Motors extends SubsystemBase {
         frontRightMotor = hw.dcMotor.get("right_front");
         backRightMotor = hw.dcMotor.get("right_back");
 
-         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-         backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
      }
 
     public static void setPower(double[] power) {
