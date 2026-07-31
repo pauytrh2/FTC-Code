@@ -16,7 +16,7 @@ public class Pathing {
         double[] move = {end[0] - current[0], end[1] - current[1]};//localize the end pos relevantly to the pp(pinpoint). I like this. this good. <3
 
         while (current != end) {// run until pinpoint is at the point
-            power = CalcPower.GetPower(imu, move[0], move[1], 0);//nononono NO!!! I hate the fact that this could work this is throwing inches at a class that expects joystick input... INCH is NOT JOYSTICK, !=, not the same, na ah. it probably would work, but it's not adjustable...
+            power = CalcPower.GetPower(imu, move[0], move[1], 0);//nononono NO!!! I hate the fact that this could work this is throwing inches at a class that expects joystick input... INCH is NOT JOYSTICK, !=, not the same, na ah. it probably would work, but it's not adjustable...... its not even that!!! its throwing coordinates at power 0-1 noooooooo!!!!! no no NO NO NO!!!! AHHHHHHHHHHHHHHHHHHH!!! NO.
             Motors.setPower(power);//set power to the motors
 
             current = roundList(Pinpoint.getPosition());//updating the parameters
