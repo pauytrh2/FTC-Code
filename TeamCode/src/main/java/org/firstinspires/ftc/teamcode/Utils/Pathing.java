@@ -12,7 +12,7 @@ public class Pathing {
     static double max_speed = 0.5; // max speed
     static double speed; // current speed
     static double slow_distance = 5; // the distance when the robot starts to slow
-    static double stop_dist = 0.5;
+    static double stop_dist = 0.5; // the distance when it stops
 
     public static void GoToPoint(IMU imu, double[] end) {
         double[] current = Pinpoint.getPosition();
