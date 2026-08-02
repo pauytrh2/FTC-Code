@@ -1,13 +1,11 @@
 package org.firstinspires.ftc.teamcode.Utils;
-//imports if you could tell....
-import static java.lang.Math.round;
-import static java.lang.Math.sqrt;
 
 import com.qualcomm.robotcore.hardware.IMU;
 
 import org.firstinspires.ftc.teamcode.SubSystems.CalcPower;
 import org.firstinspires.ftc.teamcode.SubSystems.Motors;
 import org.firstinspires.ftc.teamcode.SubSystems.Pinpoint;
+
 
 public class Pathing {
     public static void GoToPoint(IMU imu, double[] end) {
@@ -19,7 +17,7 @@ public class Pathing {
         double dy = end[1] - current[1];
         double angle = Math.atan2(dy, dx); // tha angle the robot needs to drive to to get to end.
         double max_speed = 0.5; // max speed.
-        double speed = max_speed; //current speed.
+        double speed; //current speed.
         double slow_distance = 5; //the distance wen the robot starts to slow.
         double dist = Math.hypot(dx, dy); // calculate the distance of the robot to the endpoint.
         double stop_dist = 0.5;
@@ -43,6 +41,4 @@ public class Pathing {
 
         Motors.setPower(new double[]{0, 0, 0, 0});// make sure it won't go vroom vroom kaboom
     }
-
 }
-//plz work...
