@@ -19,7 +19,7 @@ public class Pathing {
 
         double dx = end[0] - current[0];
         double dy = end[1] - current[1];
-        double angle = Math.atan2(dy, dx); // tha angle the robot needs to drive to to get to end
+        double angle = Math.atan2(dy, dx); // tha angle the robot needs to drive to get to end
         double dist = Math.hypot(dx, dy); // calculate the distance of the robot to the endpoint
 
         while (dist >= stop_dist) { // run until pinpoint is at the end
