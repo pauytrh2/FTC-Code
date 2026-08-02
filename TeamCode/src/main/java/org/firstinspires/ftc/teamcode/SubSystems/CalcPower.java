@@ -6,6 +6,8 @@ import com.seattlesolvers.solverslib.command.SubsystemBase;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
 public class CalcPower extends SubsystemBase {
+    // TODO: Physically remove GetPower in place of getting the power by angle because clean code yes yes wahhahahhaha
+
     public static double[] GetPower(IMU imu, double x, double y, double rx) {
         double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
         double rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
@@ -21,6 +23,7 @@ public class CalcPower extends SubsystemBase {
 
         return new double[]{frontLeftPower, backLeftPower, frontRightPower, backRightPower};
     }
+
     public static double[] GetPowerByAngle(IMU imu, double speed, double angle, double rx) {
         double x = speed * Math.cos(angle);
         double y = speed * Math.sin(angle);
