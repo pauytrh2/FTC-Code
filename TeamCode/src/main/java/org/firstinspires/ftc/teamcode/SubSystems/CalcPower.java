@@ -25,8 +25,8 @@ public class CalcPower extends SubsystemBase {
     }
 
     public static double[] GetPowerByAngle(IMU imu, double speed, double angle, double rx) {
-        double x = speed * Math.cos(angle);
-        double y = speed * Math.sin(angle);
+        double x = speed * Math.sin(angle);
+        double y = speed * Math.cos(angle);
 
         double botHeading = imu.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS);
 

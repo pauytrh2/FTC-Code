@@ -14,7 +14,7 @@ public class Pinpoint extends SubsystemBase {
     public static void initPinpoint(HardwareMap hw) {
         pinpoint = hw.get(GoBildaPinpointDriver.class, "pinpoint");
         configurePinpoint();
-        pinpoint.setPosition(new Pose2D(DistanceUnit.CM, 0, 0, AngleUnit.DEGREES, 0));
+        resetPosition();
     }
 
     public static void update() {
@@ -22,6 +22,7 @@ public class Pinpoint extends SubsystemBase {
     }
 
     public static double[] getPosition() {
+        update();
         Pose2D pose = pinpoint.getPosition();
 
         return new double[]{pose.getX(DistanceUnit.CM), pose.getY(DistanceUnit.CM), pose.getHeading(AngleUnit.DEGREES)};
@@ -33,5 +34,9 @@ public class Pinpoint extends SubsystemBase {
         pinpoint.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD,
                 GoBildaPinpointDriver.EncoderDirection.FORWARD);
         pinpoint.resetPosAndIMU();
+    }
+
+    public static void resetPosition() {
+        pinpoint.setPosition(new Pose2D(DistanceUnit.CM, 0, 0, AngleUnit.DEGREES, 0));
     }
 }

@@ -10,7 +10,7 @@ public class IMUInit extends SubsystemBase {
         IMU imu = hw.get(com.qualcomm.robotcore.hardware.IMU.class, "imu");
         IMU.Parameters parameters = new com.qualcomm.robotcore.hardware.IMU.Parameters(new RevHubOrientationOnRobot(
                 RevHubOrientationOnRobot.LogoFacingDirection.UP,
-                RevHubOrientationOnRobot.UsbFacingDirection.FORWARD));
+                RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD));
         imu.initialize(parameters);
 
         return imu;
