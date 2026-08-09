@@ -33,7 +33,7 @@ public class Input extends SubsystemBase {
             imu.resetYaw();
         }
 
-        //homing
+        // homing
         if (gp.shareWasPressed()) {
             Pathing.GoToPoint(imu, home);
         }
