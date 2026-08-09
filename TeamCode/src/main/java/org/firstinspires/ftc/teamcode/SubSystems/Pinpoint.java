@@ -29,7 +29,7 @@ public class Pinpoint extends SubsystemBase {
     }
 
     public static void configurePinpoint(){
-        pinpoint.setOffsets(-84.0, -168.0, DistanceUnit.MM);
+        pinpoint.setOffsets(-168, -84, DistanceUnit.MM);
         pinpoint.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
         pinpoint.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD,
                 GoBildaPinpointDriver.EncoderDirection.FORWARD);
