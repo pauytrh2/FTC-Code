@@ -41,7 +41,7 @@ public class Pathing {
             current = Pinpoint.getPosition(); // updating the parameters
             dx = end[0] - current[0];
             dy = end[1] - current[1];
-            angle = Math.atan2(dx, dx);
+            angle = Math.atan2(dx, dy);
             dist = Math.hypot(dx, dy);
 
             tel.update();
