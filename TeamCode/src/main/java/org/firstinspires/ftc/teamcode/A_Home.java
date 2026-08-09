@@ -23,7 +23,7 @@ public class A_Home extends LinearOpMode {
         waitForStart();
 
         if (opModeIsActive()) {
-            Pathing.GoToPoint(imu, home, telemetry);
+            Pathing.GoToPoint(imu, home);
         }
     }
 }
