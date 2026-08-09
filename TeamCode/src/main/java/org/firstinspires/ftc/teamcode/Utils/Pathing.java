@@ -2,17 +2,14 @@ package org.firstinspires.ftc.teamcode.Utils;
 
 import com.qualcomm.robotcore.hardware.IMU;
 
-import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.SubSystems.CalcPower;
 import org.firstinspires.ftc.teamcode.SubSystems.Motors;
 import org.firstinspires.ftc.teamcode.SubSystems.Pinpoint;
 
-import java.util.Arrays;
-
 public class Pathing {
     final static double max_speed = 0.5; // max speed
     final static double slow_distance = 50; // the distance when the robot starts to slow
-    final static double stop_dist = 10;
+    final static double stop_dist = 1;
     static double speed; // current speed
     static double[] power;
 
@@ -27,7 +24,7 @@ public class Pathing {
         while (dist >= stop_dist) { // run until pinpoint is at the end
             if (dist >= slow_distance) { // make it only go slower if it is close
                 speed = max_speed;
-            } else speed = dist / 100; // if it is close go slower
+            } else speed = dist / 100 + 0.2; // if it is close go slower
 //            tel.addData("angle (deg): ", angle);
 //            tel.addData("target (cm)", Arrays.toString(end));
 //            tel.addData("x: (cm)", String.valueOf(dx));
