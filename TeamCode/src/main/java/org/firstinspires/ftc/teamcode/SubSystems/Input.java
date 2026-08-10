@@ -31,6 +31,7 @@ public class Input extends SubsystemBase {
         // reset imu
         if (gp.options) {
             imu.resetYaw();
+            Pinpoint.resetPosition();
         }
 
         // homing
