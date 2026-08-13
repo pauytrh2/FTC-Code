@@ -9,8 +9,8 @@ import org.firstinspires.ftc.teamcode.SubSystems.Motors;
 import org.firstinspires.ftc.teamcode.SubSystems.Pinpoint;
 import org.firstinspires.ftc.teamcode.Utils.Pathing;
 
-@Autonomous(name="A_Home", group="Linear OpMode")
-public class A_Home extends LinearOpMode {
+@Autonomous(name="A_ImportantDay", group="Linear OpMode")
+public class A_ImportantDay extends LinearOpMode {
     @Override
     public void runOpMode() {
         Motors.initMotors(hardwareMap);
@@ -18,12 +18,14 @@ public class A_Home extends LinearOpMode {
         IMU imu = IMUInit.GetIMU(hardwareMap);
         imu.resetYaw();
 
-        double[] home = {0, 30};
-
         waitForStart();
 
         if (opModeIsActive()) {
-            Pathing.GoToPoint(imu, home);
+            while (opModeIsActive()) {
+                Pathing.GoToPoint(imu, new double[]{0, -40});
+                Pathing.GoToPoint(imu, new double[]{40, -40});
+
+            }
         }
     }
 }
