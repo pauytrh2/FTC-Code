@@ -96,7 +96,7 @@ public class SensorGoBildaPinpoint extends OpMode {
         pinpoint.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
 
         /*
-         * Set the direction that eae IMU will automatically calibrate when fch of the two odometry pods count. The X (forward) pod should
+         * Set the direction that each of the two odometry pods count. The X (forward) pod should
          * increase when you move the robot forward. And the Y (strafe) pod should increase when
          * you move the robot to the left.
          */

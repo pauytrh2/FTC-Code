@@ -23,41 +23,6 @@ android {
     }
 }
 
-repositories {
-    maven {
-        url = 'https://maven.brott.dev/'
-    }
-
-    maven {
-        url = 'https://maven.brott.dev/'
-    }
-
-    maven {
-        url = 'https://mymaven.bylazar.com/releases'
-    }
-
-    maven {
-        url "https://repo.dairy.foundation/releases"
-    }
-
-    // Fpr Snapshot/Beta Versions of SolversLib
-    maven {
-        url "https://repo.dairy.foundation/snapshots"
-    }
-
-}
-
 dependencies {
     implementation project(':FtcRobotController')
-    annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
-
-    // SolversLib
-    implementation "org.solverslib:core:SNAPSHOT-7cdcc66" // core
-
-    implementation "com.acmerobotics.dashboard:dashboard:0.4.17" // FTC Dashboard
-
-    // Panels Dashboard
-    implementation "com.bylazar:fullpanels:1.0.5"
-
-    implementation 'org.apache.commons:commons-math3:3.6.1'
 }
